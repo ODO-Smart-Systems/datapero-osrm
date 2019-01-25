@@ -1,0 +1,21 @@
+version: "3"
+services:
+  osrm-firstname:
+    build: containers/osrm-firstname
+    command: osrm-routed --algorithm mld /data/osm.osrm
+    links:
+      - osrm-front
+    ports: 
+      - 5000:5000
+  osrm-bars:
+    build: containers/osrm-bars
+    command: /start.sh
+    links:
+      - osrm-front
+    ports: 
+      - 5000:5000
+      - 5434:5434
+  osrm-front:
+    image: osrm/osrm-frontend
+    ports: 
+      - 9966:9966
