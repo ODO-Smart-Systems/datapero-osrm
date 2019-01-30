@@ -16,6 +16,6 @@ services:
       - 5000:5000
       - 5434:5434
   osrm-front:
-    image: osrm/osrm-frontend
+    build: containers/osrm-front
     ports: 
       - 9966:9966

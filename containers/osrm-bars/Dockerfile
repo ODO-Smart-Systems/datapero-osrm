@@ -1,5 +1,7 @@
 FROM osrm/osrm-backend
 
+MAINTAINER ODO Smart Systems http://www.odo-via.com / @willylambert
+
 RUN apt-get update && apt-get install -y wget osmctools postgresql postgis lua-sql-postgres && apt-get clean
 
 # Get Regional PBF
@@ -29,7 +31,7 @@ RUN chmod +x /opt/loadpostgis.sh
 RUN service postgresql start && /opt/loadpostgis.sh && service postgresql stop
 
 # Add route profile
-ADD bars.lua /opt/bars.lua
+ADD foot_bars.lua /opt/foot_bars.lua
 
 # Build OSRM Graph
 ADD buildgraph.sh /opt/buildgraph.sh

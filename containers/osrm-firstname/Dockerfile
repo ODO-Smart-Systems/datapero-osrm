@@ -1,5 +1,7 @@
 FROM osrm/osrm-backend
 
+MAINTAINER ODO Smart Systems http://www.odo-via.com / @willylambert
+
 RUN apt-get update && apt-get install -y wget osmctools && apt-get clean
 
 # Get Regional PBF

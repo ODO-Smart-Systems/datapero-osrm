@@ -132,7 +132,7 @@ function setup()
     smoothness_speeds = {
     },
 
-    angers_name_occurences = {
+    angers_firstname_occurences = {
       ['Adèle'] = 38,
       ['Juliette'] = 36,
       ['Charlotte'] = 20,
@@ -571,21 +571,23 @@ function WayHandlers.weighted_name(profile,way,result,data)
   local name = way:get_value_by_key("name")
 
   local newRate = 1
+  local firstname_occurence
 
   -- Set the name that will be used for instructions
   if name then    
-    for firstname,occurence in pairs(profile.angers_name_occurences) do
+    for firstname,occurence in pairs(profile.angers_firstname_occurences) do
       if string.find(name, firstname) then
         -- more occurence is high, greater the speed is
-        newRate = occurence
+        firstname_occurence = occurence
+        newRate = occurence*3
         break
       end
     end
 
     if newRate>1 then 
       print(name .. " => " .. newRate)
-      -- Update name to show firstname occurence next to route name
-      result.name = name .. " [" .. newRate .. "]"
+      -- Update name to show firstname occurence count next to route name
+      result.name = "<span style='color:red'>" .. name .. " [" .. firstname_occurence .. "]</span>"
     end
 
   end

@@ -268,14 +268,14 @@ function WayHandlers.weighted_bars(profile,way,result,data)
    "  (osm_new_landusages.type='bar' OR osm_new_landusages.type='cafe'));"
 
   local cursor = assert( sql_con:execute(sql_query) )   -- execute query
-  local row = cursor:fetch( {}, "a" )             -- fetch first (and only) row
+  local row = cursor:fetch( {}, "a" ) -- fetch first (and only) row
   if row then
-   local nbBars = tonumber(row.amenities_count)+tonumber(row.landusages_count)                  -- read 'val' from row 
+   local nbBars = tonumber(row.amenities_count)+tonumber(row.landusages_count)
    if nbBars > 0 then      
      newRate = nbBars+1 -- 0 bar : rate=1 / 1 bar : rate=2 / ...
     if name then 
       print(name .. " => " .. newRate  ..  " " .. way:id())
-      result.name = name .. " [" .. newRate .. "]"
+      result.name = "<span style='color:red'>" .. name .. " <small>[ " .. newRate .. " bars ]</small></span>"
     end
    end
   end
