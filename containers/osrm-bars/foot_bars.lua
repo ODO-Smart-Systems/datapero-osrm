@@ -252,7 +252,7 @@ function process_way(profile, way, result)
 end
 
 function WayHandlers.weighted_bars(profile,way,result,data)
-  -- parse the remaining tags
+  -- get the name of the way
   local name = way:get_value_by_key("name")
 
   local newRate = 1
